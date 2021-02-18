@@ -1,0 +1,136 @@
+import 'package:flutter/cupertino.dart';
+import 'package:sports/Tools/ColorTools.dart';
+
+/// 首页顶部
+class HomeTop extends StatefulWidget {
+  final _selectedIndex;
+  final _selectedSearch;
+  var currentIndex;
+  /// {}可选参数，设置值需要指明参数  []不需要指明参数，但位置不能变  =设置默认值
+  HomeTop(this._selectedIndex, this._selectedSearch, {this.currentIndex = 0});
+  @override
+  _HomeTopState createState() => _HomeTopState();
+}
+
+class _HomeTopState extends State<HomeTop> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 12.5, right: 12.5),
+        child: Row(
+          children: [
+            Image.asset(
+              "images/横版直播logo@2x.png",
+              width: 100.98,
+              height: 24,
+            ),
+            _HomeTopSegment(widget.currentIndex, (index) {
+              if (widget.currentIndex == index) {
+                return;
+              }
+              setState(() {
+                widget.currentIndex = index;
+              });
+              widget._selectedIndex(index);
+            }),
+            GestureDetector(
+              child: Image.asset(
+                "images/搜索@2x.png",
+                width: 18,
+                height: 18,
+              ),
+              onTap: widget._selectedSearch,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _HomeTopSegment extends StatelessWidget {
+  final _current;
+  final _selectedIndex;
+  _HomeTopSegment(this._current, this._selectedIndex);
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.only(left: 11, right: 11),
+        height: 30,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+                width: 0.5,
+                style: BorderStyle.solid,
+                color: ColorD7D7D7
+            )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _TopType("热门", _current == 0, () {
+              _selectedIndex(0);
+            }, "热门选中@2x.png"),
+            _TopType("足球", _current == 1, () {
+              _selectedIndex(1);
+            }, "足球未选@2x.png"),
+            _TopType("篮球", _current == 2, () {
+              _selectedIndex(2);
+            }, "篮球未选@2x.png")
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _TopType extends StatelessWidget {
+  final _title;
+  final _show;
+  final _tap;
+  final _image;
+  _TopType(this._title, this._show, this._tap, this._image);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Opacity(
+              opacity: _show ? 1 : 0,
+              child: Image.asset(
+                "images/矩形@2x.png",
+                height: 30,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "images/" + _image,
+                  width: 15,
+                  height: 15,
+                  color: _show ? ColorFFFFFF : Color999999,
+                ),
+                SizedBox(width: 3,),
+                Text(
+                  _title,
+                  style: TextStyle(
+                    color: _show ? ColorFFFFFF : Color999999,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+        onTap: _tap
+    );
+  }
+}

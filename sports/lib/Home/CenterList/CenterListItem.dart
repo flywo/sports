@@ -40,68 +40,71 @@ class Video {
 
 class CenterListItem extends StatelessWidget {
   final CenterListModel _model;
-  CenterListItem(this._model);
+  final void Function() _selectedItem;
+  CenterListItem(this._model, this._selectedItem);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
-      margin: EdgeInsets.only(left: 12.5, top: 5, right: 12.5),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
-          color: Colors.white
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
+      child: InkWell(
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(13))),
+          margin: EdgeInsets.only(left: 12.5, top: 5, right: 12.5, bottom: 5),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("${_model.time} ${_model.name} 第${_model.current}轮", style: TextStyle(color: Color333333, fontSize: 11),)
-            ],
-          ),
-          Divider(
-            indent: 15,
-            endIndent: 15,
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(_model.leftName, style: TextStyle(color: Color333333, fontSize: 12),),
-              SizedBox(width: 9,),
-              Image.asset(
-                _model.leftIcon,
-                height: 19,
-                width: 19,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("${_model.time} ${_model.name} 第${_model.current}轮", style: TextStyle(color: Color333333, fontSize: 11),)
+                ],
               ),
-              SizedBox(width: 15,),
-              Text("1-1", style: TextStyle(color: Color555555, fontSize: 19, fontWeight: FontWeight.bold),),
-              SizedBox(width: 15,),
-              Image.asset(
-                _model.rightIcon,
-                height: 19,
-                width: 19,
+              Divider(
+                indent: 15,
+                endIndent: 15,
+                height: 5,
               ),
-              SizedBox(width: 9,),
-              Text(_model.rightName, style: TextStyle(color: Color333333, fontSize: 12),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_model.leftName, style: TextStyle(color: Color333333, fontSize: 12),),
+                  SizedBox(width: 9,),
+                  Image.asset(
+                    _model.leftIcon,
+                    height: 19,
+                    width: 19,
+                  ),
+                  SizedBox(width: 15,),
+                  Text("1-1", style: TextStyle(color: Color555555, fontSize: 19, fontWeight: FontWeight.bold),),
+                  SizedBox(width: 15,),
+                  Image.asset(
+                    _model.rightIcon,
+                    height: 19,
+                    width: 19,
+                  ),
+                  SizedBox(width: 9,),
+                  Text(_model.rightName, style: TextStyle(color: Color333333, fontSize: 12),),
+                ],
+              ),
+              SizedBox(height: 5,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_model.leftPoint, style: TextStyle(color: Color27C5C3, fontSize: 11)),
+                  SizedBox(width: 28,),
+                  Text("半:${_model.leftVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                  SizedBox(width: 10,),
+                  Text("角:${_model.rightVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                  SizedBox(width: 28,),
+                  Text(_model.rightPoint, style: TextStyle(color: ColorDA4155, fontSize: 11)),
+                ],
+              ),
+              SizedBox(height: 5,),
+              _buildVideo(_model.videos),
             ],
           ),
-          SizedBox(height: 5,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(_model.leftPoint, style: TextStyle(color: Color27C5C3, fontSize: 11)),
-              SizedBox(width: 28,),
-              Text("半:${_model.leftVS}", style: TextStyle(color: Color999999, fontSize: 11)),
-              SizedBox(width: 10,),
-              Text("角:${_model.rightVS}", style: TextStyle(color: Color999999, fontSize: 11)),
-              SizedBox(width: 28,),
-              Text(_model.rightPoint, style: TextStyle(color: ColorDA4155, fontSize: 11)),
-            ],
-          ),
-          SizedBox(height: 5,),
-          _buildVideo(_model.videos),
-        ],
+        ),
+        onTap: _selectedItem,
       ),
     );
   }

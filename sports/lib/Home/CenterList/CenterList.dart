@@ -32,6 +32,12 @@ class _CenterListState extends State<CenterList> {
     _controller = EasyRefreshController();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Widget _sectionHeaderBuilder(BuildContext context, int section) {
     return Stack(
       children: [

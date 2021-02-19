@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../Tools/ColorTools.dart';
 
@@ -26,7 +27,15 @@ class _TopTypeState extends State<TopType> {
               _TopTypeItem(
                   widget.types[index],
                   widget.selectedIndex == index,
-                  widget._selectedType
+                  () {
+                    if (widget.selectedIndex == index) {
+                      return;
+                    }
+                    setState(() {
+                      widget.selectedIndex = index;
+                    });
+                    widget._selectedType(index);
+                  }
               )
       ),
     );
@@ -41,10 +50,11 @@ class _TopTypeItem extends StatelessWidget {
   _TopTypeItem(this._title, this._selected, this._selectedHandle);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       child: SizedBox(
         width: 60,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             /// 标题
             SizedBox(
@@ -53,7 +63,9 @@ class _TopTypeItem extends StatelessWidget {
                 child: Text(
                   _title,
                   style: TextStyle(
-                    color: _selected ? Color27C5C3 : Color666666
+                    color: _selected ? Color27C5C3 : Color666666,
+                    fontSize: 14,
+                    fontWeight: _selected ? FontWeight.bold : FontWeight.normal
                   ),
                 ),
               ),

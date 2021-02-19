@@ -67,6 +67,7 @@ class _BottomState extends State<Bottom> {
                 children: [
                   Image.asset("images/椭圆形@2x.png"),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         "images/刷新@2x.png",
@@ -117,7 +118,14 @@ class _BottomType extends StatelessWidget {
                   color: _show ? Color(0xff27c5c3) : Color(0xff999999),
                 ),
                 SizedBox(width: 3,),
-                Text(_title, style: TextStyle(color: _show ? Color(0xff27c5c3) : Color(0xff999999)),)
+                Text(
+                  _title,
+                  style: TextStyle(
+                      color: _show ? Color(0xff27c5c3) : Color(0xff999999),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold
+                  ),
+                )
               ],
             ),
           ],

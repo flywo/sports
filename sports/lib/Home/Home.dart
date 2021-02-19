@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Home/Bottom/Bottom.dart';
+import 'package:sports/Home/CenterList/CenterList.dart';
 import 'package:sports/Home/Top/Top.dart';
 import 'package:sports/Home/TopType/TopType.dart';
 
@@ -22,13 +23,17 @@ class _HomeState extends State<Home> {
             }, () {
               print("点击了搜索按钮");
             }, currentIndex: 0,),
+            SizedBox(height: 15,),
             /// 顶部比赛分类
             TopType(
-                ["1", "2"], (index) {}, 0
+                ["所有", "西甲", "西甲", "西甲", "西甲", "西甲", "西甲", "西甲", "西甲", "西甲"],
+                    (index) {
+                  print("点击了分类比赛:$index");
+            }, 0
             ),
             /// 列表
             Expanded(
-              child: Text("1111"),
+              child: CenterList(),
             ),
             /// 底部
             Bottom(

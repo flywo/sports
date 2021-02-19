@@ -106,18 +106,17 @@ class CenterListItem extends StatelessWidget {
     );
   }
 
-  Opacity _buildVideo(List<Video> list) {
+  Row _buildVideo(List<Video> list) {
     List<Widget> children = [];
     for (var value in list) {
       children.add(SizedBox(width: 20,));
       children.add(_VideoType(value.image, value.name, value.show));
     }
-    return Opacity(
-      opacity: children.isEmpty ? 0 : 1,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children.isEmpty ? [Text("没有视频")] : children,
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children.isEmpty ?
+      [Text("暂无更多信号", style: TextStyle(color: ColorC9C9C9, fontSize: 11))] :
+      children,
     );
   }
 }

@@ -12,16 +12,24 @@ class CenterList extends StatefulWidget {
 
 class _CenterListState extends State<CenterList> {
 
-  int sectionCount = 3;
+  int _sectionCount = 3;
+
+  EasyRefreshController _controller;
 
   int _rowCountAtSection(int section) {
     if (section == 0) {
       return 5;
     } else if (section == 1) {
-      return 10;
+      return 4;
     } else {
-      return 20;
+      return 2;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = EasyRefreshController();
   }
 
   Widget _sectionHeaderBuilder(BuildContext context, int section) {
@@ -75,7 +83,6 @@ class _CenterListState extends State<CenterList> {
     return 41;
   }
 
-  // Each cell item widget height.
   double _cellHeight(BuildContext context, int section, int row) {
     return 100;
   }
@@ -83,7 +90,7 @@ class _CenterListState extends State<CenterList> {
   @override
   Widget build(BuildContext context) {
     return FlutterTableView(
-        sectionCount: sectionCount,
+        sectionCount: _sectionCount,
         rowCountAtSection: _rowCountAtSection,
         sectionHeaderBuilder: _sectionHeaderBuilder,
         cellBuilder: _cellBuilder,
@@ -92,6 +99,29 @@ class _CenterListState extends State<CenterList> {
         listViewFatherWidgetBuilder: (BuildContext context, Widget listView) {
           return EasyRefresh(
             child: listView,
+            enableControlFinishLoad: true,
+            enableControlFinishRefresh: false,
+            header: ClassicalHeader(),
+            footer: ClassicalFooter(),
+            controller: _controller,
+            onRefresh: () async {
+              await Future.delayed(Duration(seconds: 2), () {
+                print('onRefresh');
+                setState(() {
+                  _sectionCount += 1;
+                });
+                _controller.resetLoadState();
+              });
+            },
+            onLoad: () async {
+              await Future.delayed(Duration(seconds: 2), () {
+                print('onLoad');
+                setState(() {
+                  _sectionCount += 1;
+                });
+                _controller.finishLoad(noMore: _sectionCount > 6);
+              });
+            },
           );
         }
     );

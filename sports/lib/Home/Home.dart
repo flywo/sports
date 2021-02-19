@@ -4,6 +4,7 @@ import 'package:sports/Home/Bottom/Bottom.dart';
 import 'package:sports/Home/CenterList/CenterList.dart';
 import 'package:sports/Home/Top/Top.dart';
 import 'package:sports/Home/TopType/TopType.dart';
+import 'package:sports/Tools/ColorTools.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorF9F9F9,
       body: SafeArea(
         child: Column(
           children: [

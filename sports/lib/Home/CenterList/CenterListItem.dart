@@ -47,7 +47,7 @@ class CenterListItem extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.only(left: 12.5, top: 5, right: 12.5),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(13),
           color: Colors.white
       ),
       child: Column(
@@ -62,6 +62,7 @@ class CenterListItem extends StatelessWidget {
           Divider(
             indent: 15,
             endIndent: 15,
+            height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

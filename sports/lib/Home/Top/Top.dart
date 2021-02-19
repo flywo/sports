@@ -3,10 +3,10 @@ import 'package:sports/Tools/ColorTools.dart';
 
 /// 首页顶部
 class HomeTop extends StatefulWidget {
-  final _selectedIndex;
-  final _selectedSearch;
-  var currentIndex;
-  /// {}可选参数，设置值需要指明参数  []不需要指明参数，但位置不能变  =设置默认值
+  final void Function(int) _selectedIndex;
+  final void Function() _selectedSearch;
+  int currentIndex;
+  /// {}可选参数，设置值需要指明参数  []不需要指明参数，但位置不能变，不传参数则为nil  =设置默认值
   HomeTop(this._selectedIndex, this._selectedSearch, {this.currentIndex = 0});
   @override
   _HomeTopState createState() => _HomeTopState();
@@ -21,11 +21,13 @@ class _HomeTopState extends State<HomeTop> {
         padding: const EdgeInsets.only(left: 12.5, right: 12.5),
         child: Row(
           children: [
+            /// 图片
             Image.asset(
               "images/横版直播logo@2x.png",
               width: 100.98,
               height: 24,
             ),
+            /// 筛选项
             _HomeTopSegment(widget.currentIndex, (index) {
               if (widget.currentIndex == index) {
                 return;
@@ -35,6 +37,7 @@ class _HomeTopState extends State<HomeTop> {
               });
               widget._selectedIndex(index);
             }),
+            /// 搜索
             GestureDetector(
               child: Image.asset(
                 "images/搜索@2x.png",

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
 
 /// 首页顶部
@@ -38,13 +39,14 @@ class _HomeTopState extends State<HomeTop> {
               widget._selectedIndex(index);
             }),
             /// 搜索
-            GestureDetector(
+            InkWell(
               child: Image.asset(
                 "images/搜索@2x.png",
                 width: 18,
                 height: 18,
               ),
               onTap: widget._selectedSearch,
+              borderRadius: BorderRadius.all(Radius.circular(9)),
             ),
           ],
         ),
@@ -100,7 +102,7 @@ class _TopType extends StatelessWidget {
   _TopType(this._title, this._show, this._tap, this._image);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -133,6 +135,7 @@ class _TopType extends StatelessWidget {
             ),
           ],
         ),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
         onTap: _tap
     );
   }

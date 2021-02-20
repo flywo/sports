@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../Tools/ColorTools.dart';
 
@@ -59,7 +60,7 @@ class _BottomState extends State<Bottom> {
             ),
           ),
           /// 底部右侧刷新
-          GestureDetector(
+          InkWell(
             child: SizedBox(
               width: 60,
               child: Stack(
@@ -80,6 +81,7 @@ class _BottomState extends State<Bottom> {
                 ],
               ),
             ),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
             onTap: widget._selectedRefresh,
           ),
         ],
@@ -97,7 +99,7 @@ class _BottomType extends StatelessWidget {
   _BottomType(this._title, this._show, this._tap, this._image);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -130,6 +132,7 @@ class _BottomType extends StatelessWidget {
             ),
           ],
         ),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
         onTap: _tap
     );
   }

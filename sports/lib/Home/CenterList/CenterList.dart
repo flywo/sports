@@ -5,37 +5,17 @@ import 'package:flutter_tableview/flutter_tableview.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ColorTools.dart';
 
-class CenterList extends StatefulWidget {
-  @override
-  _CenterListState createState() => _CenterListState();
-}
+class CenterList extends StatelessWidget {
 
-class _CenterListState extends State<CenterList> {
+  final _list;
+  final void Function() _refresh;
+  final void Function() _load;
+  final EasyRefreshController _controller;
 
-  int _sectionCount = 3;
-
-  EasyRefreshController _controller;
+  CenterList(this._list, this._refresh, this._load, this._controller);
 
   int _rowCountAtSection(int section) {
-    if (section == 0) {
-      return 5;
-    } else if (section == 1) {
-      return 4;
-    } else {
-      return 2;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = EasyRefreshController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    return _list[section].length;
   }
 
   Widget _sectionHeaderBuilder(BuildContext context, int section) {
@@ -58,24 +38,8 @@ class _CenterListState extends State<CenterList> {
   }
 
   Widget _cellBuilder(BuildContext context, int section, int row) {
-    return CenterListItem(CenterListModel(
-        "11",
-        "21:00",
-        "英超",
-        "阿森纳",
-        "切尔西",
-        "images/欧洲1@2x.png",
-        "images/欧洲2@2x.png",
-        "0.686",
-        "1.4",
-        "1-1",
-        "1-5",
-        [
-          Video("高清", "高清@2x.png", false),
-          Video("高清", "高清@2x.png", true),
-          Video("高清", "高清@2x.png", false),
-          Video("高清", "高清@2x.png", true),
-        ]),
+    return CenterListItem(
+        _list[section][row],
         () {
           print("点击了item:$section $row");
         }
@@ -93,7 +57,7 @@ class _CenterListState extends State<CenterList> {
   @override
   Widget build(BuildContext context) {
     return FlutterTableView(
-        sectionCount: _sectionCount,
+        sectionCount: _list.length,
         rowCountAtSection: _rowCountAtSection,
         sectionHeaderBuilder: _sectionHeaderBuilder,
         cellBuilder: _cellBuilder,
@@ -107,24 +71,8 @@ class _CenterListState extends State<CenterList> {
             header: ClassicalHeader(),
             footer: ClassicalFooter(),
             controller: _controller,
-            onRefresh: () async {
-              await Future.delayed(Duration(seconds: 2), () {
-                print('onRefresh');
-                setState(() {
-                  _sectionCount += 1;
-                });
-                _controller.resetLoadState();
-              });
-            },
-            onLoad: () async {
-              await Future.delayed(Duration(seconds: 2), () {
-                print('onLoad');
-                setState(() {
-                  _sectionCount += 1;
-                });
-                _controller.finishLoad(noMore: _sectionCount > 6);
-              });
-            },
+            onRefresh: _refresh,
+            onLoad: _load,
           );
         }
     );

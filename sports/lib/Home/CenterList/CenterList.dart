@@ -2,17 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_tableview/flutter_tableview.dart';
+import 'package:sports/Home/CenterList/CenterListFootballItem.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ColorTools.dart';
 
 class CenterList extends StatelessWidget {
 
-  final _list;
+  final int _type;
+  final List _list;
+  final List _titles;
   final void Function() _refresh;
   final void Function() _load;
   final EasyRefreshController _controller;
 
-  CenterList(this._list, this._refresh, this._load, this._controller);
+  CenterList(this._type, this._list, this._titles, this._refresh, this._load, this._controller);
 
   int _rowCountAtSection(int section) {
     return _list[section].length;
@@ -31,13 +34,16 @@ class CenterList extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: ColorF0F0F0,
           ),
-          child: Text("11111")
+          child: Text(_titles.first, style: TextStyle(color: Color333333, fontSize: 12),)
         ),
       ],
     );
   }
 
   Widget _cellBuilder(BuildContext context, int section, int row) {
+    if (_type == 1) {
+      return CenterListFootballItem();
+    }
     return CenterListItem(
         _list[section][row],
         () {

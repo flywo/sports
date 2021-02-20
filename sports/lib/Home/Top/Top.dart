@@ -3,17 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
 
 /// 首页顶部
-class HomeTop extends StatefulWidget {
+class HomeTop extends StatelessWidget {
   final void Function(int) _selectedIndex;
   final void Function() _selectedSearch;
-  int currentIndex;
+  int _currentIndex;
   /// {}可选参数，设置值需要指明参数  []不需要指明参数，但位置不能变，不传参数则为nil  =设置默认值
-  HomeTop(this._selectedIndex, this._selectedSearch, {this.currentIndex = 0});
-  @override
-  _HomeTopState createState() => _HomeTopState();
-}
+  HomeTop(this._selectedIndex, this._selectedSearch, this._currentIndex);
 
-class _HomeTopState extends State<HomeTop> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,14 +25,11 @@ class _HomeTopState extends State<HomeTop> {
               height: 24,
             ),
             /// 筛选项
-            _HomeTopSegment(widget.currentIndex, (index) {
-              if (widget.currentIndex == index) {
+            _HomeTopSegment(_currentIndex, (index) {
+              if (_currentIndex == index) {
                 return;
               }
-              setState(() {
-                widget.currentIndex = index;
-              });
-              widget._selectedIndex(index);
+              _selectedIndex(index);
             }),
             /// 搜索
             InkWell(
@@ -45,7 +38,7 @@ class _HomeTopState extends State<HomeTop> {
                 width: 18,
                 height: 18,
               ),
-              onTap: widget._selectedSearch,
+              onTap: _selectedSearch,
               borderRadius: BorderRadius.all(Radius.circular(9)),
             ),
           ],

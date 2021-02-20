@@ -49,7 +49,7 @@ class CenterListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(13))),
         margin: EdgeInsets.only(left: 12.5, top: 5, right: 12.5, bottom: 5),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class CenterListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(_model.leftName, style: TextStyle(color: Color333333, fontSize: 12),),
+                Expanded(child: Text(_model.leftName, style: TextStyle(color: Color333333, fontSize: 12), textDirection: TextDirection.rtl,)),
                 SizedBox(width: 9,),
                 Image.asset(
                   _model.leftIcon,
@@ -81,20 +81,24 @@ class CenterListItem extends StatelessWidget {
                   width: 19,
                 ),
                 SizedBox(width: 9,),
-                Text(_model.rightName, style: TextStyle(color: Color333333, fontSize: 12),),
+                Expanded(child: Text(_model.rightName, style: TextStyle(color: Color333333, fontSize: 12),)),
               ],
             ),
             SizedBox(height: 5,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(_model.leftPoint, style: TextStyle(color: Color27C5C3, fontSize: 11)),
-                SizedBox(width: 28,),
-                Text("半:${_model.leftVS}", style: TextStyle(color: Color999999, fontSize: 11)),
-                SizedBox(width: 10,),
-                Text("角:${_model.rightVS}", style: TextStyle(color: Color999999, fontSize: 11)),
-                SizedBox(width: 28,),
-                Text(_model.rightPoint, style: TextStyle(color: ColorDA4155, fontSize: 11)),
+                Expanded(child: Text(_model.leftPoint, style: TextStyle(color: Color27C5C3, fontSize: 11), textDirection: TextDirection.rtl,)),
+                Row(
+                  children: [
+                    SizedBox(width: 28,),
+                    Text("半:${_model.leftVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                    SizedBox(width: 10,),
+                    Text("角:${_model.rightVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                    SizedBox(width: 28,),
+                  ],
+                ),
+                Expanded(child: Text(_model.rightPoint, style: TextStyle(color: ColorDA4155, fontSize: 11))),
               ],
             ),
             SizedBox(height: 5,),
@@ -110,7 +114,7 @@ class CenterListItem extends StatelessWidget {
     List<Widget> children = [];
     for (var value in list) {
       children.add(SizedBox(width: 20,));
-      children.add(_VideoType(value.image, value.name, value.show));
+      children.add(VideoType(value.image, value.name, value.show));
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -122,11 +126,11 @@ class CenterListItem extends StatelessWidget {
 }
 
 
-class _VideoType extends StatelessWidget {
+class VideoType extends StatelessWidget {
   final _imageName;
   final _name;
   final _show;
-  _VideoType(this._imageName, this._name, this._show);
+  VideoType(this._imageName, this._name, this._show);
   @override
   Widget build(BuildContext context) {
     return Row(

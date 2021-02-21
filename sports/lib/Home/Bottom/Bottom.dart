@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sports/Tools/TextTools.dart';
 
 import '../../Tools/ColorTools.dart';
 
@@ -120,14 +121,7 @@ class _BottomType extends StatelessWidget {
                   color: _show ? Color(0xff27c5c3) : Color(0xff999999),
                 ),
                 SizedBox(width: 3,),
-                Text(
-                  _title,
-                  style: TextStyle(
-                      color: _show ? Color(0xff27c5c3) : Color(0xff999999),
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold
-                  ),
-                )
+                buildText(title: _title, fontSize: 12, fontColor: _show ? Color(0xff27c5c3) : Color(0xff999999), fontBold: true)
               ],
             ),
           ],

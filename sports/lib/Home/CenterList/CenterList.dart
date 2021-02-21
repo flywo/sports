@@ -5,6 +5,7 @@ import 'package:flutter_tableview/flutter_tableview.dart';
 import 'package:sports/Home/CenterList/CenterListFootballItem.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ColorTools.dart';
+import 'package:sports/Tools/TextTools.dart';
 
 class CenterList extends StatelessWidget {
 
@@ -34,7 +35,7 @@ class CenterList extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: ColorF0F0F0,
           ),
-          child: Text(_titles.first, style: TextStyle(color: Color333333, fontSize: 12),)
+          child: buildText(title: _titles.first, fontSize: 12, fontColor: Color333333),
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
+import 'package:sports/Tools/TextTools.dart';
 
 class CenterListFootballItem extends StatelessWidget {
   @override
@@ -17,11 +18,11 @@ class CenterListFootballItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: Text("半:0-0", style: TextStyle(color: Color999999, fontSize: 11)),
+                  child: buildText(title: "半:0-0", fontSize: 11, fontColor: Color999999),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text("角:1-9", style: TextStyle(color: Color999999, fontSize: 11)),
+                  child: buildText(title: "角:1-9", fontSize: 11, fontColor: Color999999),
                 ),
                 Spacer(),
                 Padding(
@@ -46,8 +47,8 @@ class CenterListFootballItem extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("21:00", style: TextStyle(color: Color333333, fontSize: 12, fontWeight: FontWeight.bold)),
-                        Text("英超 第18轮", style: TextStyle(color: Color999999, fontSize: 11)),
+                        buildText(title: "21:00", fontSize: 12, fontColor: Color333333, fontBold: true),
+                        buildText(title: "英超 第18轮", fontSize: 11, fontColor: Color999999)
                       ],
                     ),
                   ),
@@ -80,7 +81,7 @@ class CenterListFootballItem extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Expanded(child: Text(name, style: TextStyle(color: Color333333, fontSize: 12,), maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.end,)),
+          Expanded(child: buildText(title: name, fontSize: 12, fontColor: Color333333, textAlign: TextAlign.end, maxLines: 2)),
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Image.asset(
@@ -89,7 +90,7 @@ class CenterListFootballItem extends StatelessWidget {
               width: 19,
             ),
           ),
-          SizedBox(width: 20, child: Text(point, style: TextStyle(color: Color555555, fontSize: 13, fontWeight: FontWeight.bold), textAlign: TextAlign.center,))
+          SizedBox(width: 20, child: buildText(title: point, fontSize: 13, fontColor: Color555555, fontBold: true, textAlign: TextAlign.center),),
         ],
       );
     }
@@ -105,9 +106,9 @@ class CenterListFootballItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text("1.87", style: TextStyle(color: Color333333, fontSize: 12,)),
-        Text("1.87", style: TextStyle(color: Color333333, fontSize: 12,)),
-        Text("1.87", style: TextStyle(color: Color333333, fontSize: 12,)),
+        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
+        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
+        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
       ],
     );
   }

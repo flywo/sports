@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
+import 'package:sports/Tools/TextTools.dart';
 
 /// 首页顶部
 class HomeTop extends StatelessWidget {
@@ -116,14 +117,7 @@ class _TopType extends StatelessWidget {
                   color: _show ? ColorFFFFFF : Color999999,
                 ),
                 SizedBox(width: 3,),
-                Text(
-                  _title,
-                  style: TextStyle(
-                    color: _show ? ColorFFFFFF : Color999999,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold
-                  ),
-                )
+                buildText(title: _title, fontSize: 15, fontColor: _show ? ColorFFFFFF : Color999999, fontBold: true)
               ],
             ),
           ],

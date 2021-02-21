@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
+import 'package:sports/Tools/TextTools.dart';
 
 class CenterListModel {
   final current;
@@ -54,7 +55,7 @@ class CenterListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${_model.time} ${_model.name} 第${_model.current}轮", style: TextStyle(color: Color333333, fontSize: 11),)
+                buildText(title: "${_model.time} ${_model.name} 第${_model.current}轮", fontColor: Color333333, fontSize: 11)
               ],
             ),
             Divider(
@@ -65,7 +66,7 @@ class CenterListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: Text(_model.leftName, style: TextStyle(color: Color333333, fontSize: 12), textDirection: TextDirection.rtl,)),
+                Expanded(child: buildText(title: _model.leftName, fontColor: Color333333, fontSize: 12, textAlign: TextAlign.end)),
                 SizedBox(width: 9,),
                 Image.asset(
                   _model.leftIcon,
@@ -73,7 +74,7 @@ class CenterListItem extends StatelessWidget {
                   width: 19,
                 ),
                 SizedBox(width: 15,),
-                Text("1-1", style: TextStyle(color: Color555555, fontSize: 19, fontWeight: FontWeight.bold),),
+                buildText(title: "1-1", fontSize: 19, fontColor: Color555555, fontBold: true),
                 SizedBox(width: 15,),
                 Image.asset(
                   _model.rightIcon,
@@ -81,24 +82,24 @@ class CenterListItem extends StatelessWidget {
                   width: 19,
                 ),
                 SizedBox(width: 9,),
-                Expanded(child: Text(_model.rightName, style: TextStyle(color: Color333333, fontSize: 12),)),
+                Expanded(child: buildText(title: _model.rightName, fontSize: 12, fontColor: Color333333)),
               ],
             ),
             SizedBox(height: 5,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: Text(_model.leftPoint, style: TextStyle(color: Color27C5C3, fontSize: 11), textDirection: TextDirection.rtl,)),
+                Expanded(child: buildText(title: _model.leftPoint, fontSize: 11, fontColor: Color27C5C3, textAlign: TextAlign.end)),
                 Row(
                   children: [
                     SizedBox(width: 28,),
-                    Text("半:${_model.leftVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                    buildText(title: "半:${_model.leftVS}", fontSize: 11, fontColor: Color999999),
                     SizedBox(width: 10,),
-                    Text("角:${_model.rightVS}", style: TextStyle(color: Color999999, fontSize: 11)),
+                    buildText(title: "角:${_model.rightVS}", fontSize: 11, fontColor: Color999999),
                     SizedBox(width: 28,),
                   ],
                 ),
-                Expanded(child: Text(_model.rightPoint, style: TextStyle(color: ColorDA4155, fontSize: 11))),
+                Expanded(child: buildText(title: _model.rightPoint, fontSize: 11, fontColor: ColorDA4155)),
               ],
             ),
             SizedBox(height: 5,),
@@ -119,7 +120,7 @@ class CenterListItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: children.isEmpty ?
-      [Text("暂无更多信号", style: TextStyle(color: ColorC9C9C9, fontSize: 11))] :
+      [buildText(title: "暂无更多信号", fontSize: 11, fontColor: ColorC9C9C9)] :
       children,
     );
   }
@@ -143,7 +144,7 @@ class VideoType extends StatelessWidget {
           color: _show ? null : ColorC9C9C9,
         ),
         SizedBox(width: 2,),
-        Text(_name, style: TextStyle(color: _show ? Color666666 : ColorC9C9C9, fontSize: 11)),
+        buildText(title: _name, fontSize: 11, fontColor: _show ? Color666666 : ColorC9C9C9)
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
+import 'package:sports/Tools/ShapeTools.dart';
 import 'package:sports/Tools/TextTools.dart';
 
 class CenterListModel {
@@ -47,7 +48,7 @@ class CenterListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(13))),
+        shape: buildRadius(radius: 13),
         margin: EdgeInsets.only(left: 12.5, top: 5, right: 12.5, bottom: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,7 +62,7 @@ class CenterListItem extends StatelessWidget {
             Divider(
               indent: 15,
               endIndent: 15,
-              height: 5,
+              height: 1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

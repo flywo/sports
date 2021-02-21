@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_tableview/flutter_tableview.dart';
+import 'package:sports/Home/CenterList/CenterListBasketBallItem.dart';
 import 'package:sports/Home/CenterList/CenterListFootballItem.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ColorTools.dart';
@@ -44,6 +45,8 @@ class CenterList extends StatelessWidget {
   Widget _cellBuilder(BuildContext context, int section, int row) {
     if (_type == 1) {
       return CenterListFootballItem();
+    } else if (_type == 2) {
+      return CenterListBasketBallItem();
     }
     return CenterListItem(
         _list[section][row],

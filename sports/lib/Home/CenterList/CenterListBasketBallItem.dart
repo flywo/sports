@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sports/Tools/ColorTools.dart';
-import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ShapeTools.dart';
 import 'package:sports/Tools/TextTools.dart';
 
-class CenterListFootballItem extends StatelessWidget {
+import 'CenterListItem.dart';
+
+class CenterListBasketBallItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,11 +20,11 @@ class CenterListFootballItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: buildText(title: "半:0-0", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: "VTB联赛", fontSize: 11, fontColor: Color999999),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: buildText(title: "角:1-9", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: "第二节", fontSize: 11, fontColor: Color999999),
                 ),
                 Spacer(),
                 Padding(
@@ -45,24 +46,17 @@ class CenterListFootballItem extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildText(title: "21:00", fontSize: 12, fontColor: Color333333, fontBold: true),
-                        buildText(title: "英超 第18轮", fontSize: 11, fontColor: Color999999)
-                      ],
-                    ),
+                    child: Center(child: buildText(title: "21:00", fontSize: 12, fontColor: Color333333, fontBold: true)),
                   ),
                   Expanded(child: _buildTeam()),
                   VerticalDivider(
                     width: 5,
                   ),
                   SizedBox(
-                    width: 140,
+                    width: 150,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildText(),
                         _buildText(),
                         _buildText(),
                       ],
@@ -98,7 +92,7 @@ class CenterListFootballItem extends StatelessWidget {
     return Column(
       children: [
         _buildSingleTeam("队伍队伍队伍队伍队伍", "images/欧洲1@2x.png", "11"),
-        _buildSingleTeam("队伍222222222222", "images/欧洲2@2x.png", "2")
+        _buildSingleTeam("队伍2", "images/欧洲2@2x.png", "2")
       ],
     );
   }
@@ -107,9 +101,11 @@ class CenterListFootballItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
+        buildText(title: "封", fontSize: 12, fontColor: Color333333),
+        buildText(title: "12", fontSize: 12, fontColor: Color333333),
+        buildText(title: "34", fontSize: 12, fontColor: Color333333),
+        buildText(title: "34", fontSize: 12, fontColor: Color333333),
+        buildText(title: "34", fontSize: 12, fontColor: Color333333),
       ],
     );
   }

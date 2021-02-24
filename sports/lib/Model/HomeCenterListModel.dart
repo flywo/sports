@@ -41,6 +41,12 @@ class CenterListModel {
   final rightP2;
   /// 右边队伍分3 - 足球 篮球
   final rightP3;
+  /// 中间分1 - 足球
+  final midP1;
+  /// 中间分2 - 足球
+  final midP2;
+  /// 中间分3 - 足球
+  final midP3;
   /// 当前节数 - 篮球
   final currentStep;
   /// 左边当前状态 - 篮球
@@ -78,6 +84,9 @@ class CenterListModel {
     this.rightPTitle,
     this.leftP4,
     this.rightP4,
+    this.midP1,
+    this.midP2,
+    this.midP3
   });
 }
 

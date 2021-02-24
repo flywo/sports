@@ -11,7 +11,7 @@ Text buildText({
   int maxLines = 1
 }) {
   return Text(
-    title,
+    title ?? "",
     style: TextStyle(
         color: fontColor,
         fontSize: fontSize,

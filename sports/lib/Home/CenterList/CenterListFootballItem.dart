@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sports/Model/HomeCenterListModel.dart';
 import 'package:sports/Tools/ColorTools.dart';
 import 'package:sports/Home/CenterList/CenterListItem.dart';
 import 'package:sports/Tools/ShapeTools.dart';
 import 'package:sports/Tools/TextTools.dart';
 
 class CenterListFootballItem extends StatelessWidget {
+
+  final CenterListModel _model;
+
+  const CenterListFootballItem(this._model);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,21 +25,17 @@ class CenterListFootballItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: buildText(title: "半:0-0", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: "半${_model.half}", fontSize: 11, fontColor: Color999999),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: buildText(title: "角:1-9", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: "角:${_model.corner}", fontSize: 11, fontColor: Color999999),
                 ),
                 Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: VideoType("高清@2x.png", "高清", true),
-                ),
-                Padding(
                   padding: const EdgeInsets.only(right: 15),
-                  child: VideoType("高清@2x.png", "高清", true),
-                ),
+                  child: buildVideo(_model.videos, space: 10.0),
+                )
               ],
             ),
             Divider(
@@ -48,23 +50,23 @@ class CenterListFootballItem extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildText(title: "21:00", fontSize: 12, fontColor: Color333333, fontBold: true),
-                        buildText(title: "英超 第18轮", fontSize: 11, fontColor: Color999999)
+                        buildText(title: _model.time, fontSize: 12, fontColor: Color333333, fontBold: true),
+                        buildText(title: "${_model.name} 第${_model.current}轮", fontSize: 11, fontColor: Color999999)
                       ],
                     ),
                   ),
                   Expanded(child: _buildTeam()),
                   VerticalDivider(
-                    width: 5,
+                    width: 10,
                   ),
                   SizedBox(
-                    width: 140,
+                    width: 120,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildText(),
-                        _buildText(),
-                        _buildText(),
+                        _buildText(_model.leftP1, _model.leftP2, _model.leftP3),
+                        _buildText(_model.midP1, _model.midP2, _model.midP3),
+                        _buildText(_model.rightP1, _model.rightP2, _model.rightP3),
                       ],
                     ),
                   )
@@ -91,25 +93,34 @@ class CenterListFootballItem extends StatelessWidget {
               width: 19,
             ),
           ),
-          SizedBox(width: 20, child: buildText(title: point, fontSize: 13, fontColor: Color555555, fontBold: true, textAlign: TextAlign.center),),
+          SizedBox(
+            width: 30,
+            child: buildText(
+                title: point,
+                fontSize: 13,
+                fontColor: Color555555,
+                fontBold: true,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible
+            ),
+          ),
         ],
       );
     }
     return Column(
       children: [
-        _buildSingleTeam("队伍队伍队伍队伍队伍", "images/欧洲1@2x.png", "11"),
-        _buildSingleTeam("队伍222222222222", "images/欧洲2@2x.png", "2")
+        _buildSingleTeam(_model.leftName, _model.leftIcon, _model.leftPoint),
+        _buildSingleTeam(_model.rightName, _model.rightIcon, _model.rightPoint)
       ],
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(t1, t2, t3) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
-        buildText(title: "1.87", fontSize: 12, fontColor: Color333333),
+        Expanded(child: buildText(title: t1, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: t2, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: t3, fontSize: 12, fontColor: Color333333)),
       ],
     );
   }

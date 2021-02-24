@@ -44,7 +44,9 @@ class CenterList extends StatelessWidget {
 
   Widget _cellBuilder(BuildContext context, int section, int row) {
     if (_type == 1) {
-      return CenterListFootballItem();
+      return CenterListFootballItem(
+        _list[section][row],
+      );
     } else if (_type == 2) {
       return CenterListBasketBallItem(
         _list[section][row],

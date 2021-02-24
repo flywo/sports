@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sports/Model/HomeCenterListModel.dart';
 import 'package:sports/Tools/ColorTools.dart';
 import 'package:sports/Tools/ShapeTools.dart';
 import 'package:sports/Tools/TextTools.dart';
@@ -7,6 +8,8 @@ import 'package:sports/Tools/TextTools.dart';
 import 'CenterListItem.dart';
 
 class CenterListBasketBallItem extends StatelessWidget {
+  final CenterListModel _model;
+  CenterListBasketBallItem(this._model);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -20,21 +23,14 @@ class CenterListBasketBallItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
-                  child: buildText(title: "VTB联赛", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: _model.name, fontSize: 11, fontColor: Color999999),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: buildText(title: "第二节", fontSize: 11, fontColor: Color999999),
+                  child: buildText(title: _model.currentStep, fontSize: 11, fontColor: Color999999),
                 ),
                 Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: VideoType("高清@2x.png", "高清", true),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: VideoType("高清@2x.png", "高清", true),
-                ),
+                buildVideo(_model.videos)
               ],
             ),
             Divider(
@@ -46,7 +42,7 @@ class CenterListBasketBallItem extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Center(child: buildText(title: "21:00", fontSize: 12, fontColor: Color333333, fontBold: true)),
+                    child: Center(child: buildText(title: _model.time, fontSize: 12, fontColor: Color333333, fontBold: true)),
                   ),
                   Expanded(child: _buildTeam()),
                   VerticalDivider(
@@ -57,8 +53,8 @@ class CenterListBasketBallItem extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildText(),
-                        _buildText(),
+                        _buildText(_model.leftPTitle, _model.leftP1, _model.leftP2, _model.leftP3, _model.leftP4),
+                        _buildText(_model.rightPTitle, _model.rightP1, _model.rightP2, _model.rightP3, _model.rightP4),
                       ],
                     ),
                   )
@@ -91,21 +87,21 @@ class CenterListBasketBallItem extends StatelessWidget {
     }
     return Column(
       children: [
-        _buildSingleTeam("队伍队伍队伍队伍队伍", "images/欧洲1@2x.png", "11"),
-        _buildSingleTeam("队伍2", "images/欧洲2@2x.png", "2")
+        _buildSingleTeam(_model.leftName, _model.leftIcon, _model.leftPoint),
+        _buildSingleTeam(_model.rightName, _model.rightIcon, _model.rightPoint)
       ],
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(text1, text2, text3, text4, text5) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        buildText(title: "封", fontSize: 12, fontColor: Color333333),
-        buildText(title: "12", fontSize: 12, fontColor: Color333333),
-        buildText(title: "34", fontSize: 12, fontColor: Color333333),
-        buildText(title: "34", fontSize: 12, fontColor: Color333333),
-        buildText(title: "34", fontSize: 12, fontColor: Color333333),
+        buildText(title: text1, fontSize: 12, fontColor: Color333333),
+        buildText(title: text2, fontSize: 12, fontColor: Color333333),
+        buildText(title: text3, fontSize: 12, fontColor: Color333333),
+        buildText(title: text4, fontSize: 12, fontColor: Color333333),
+        buildText(title: text5, fontSize: 12, fontColor: Color333333),
       ],
     );
   }

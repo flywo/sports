@@ -1,44 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sports/Model/HomeCenterListModel.dart';
 import 'package:sports/Tools/ColorTools.dart';
 import 'package:sports/Tools/ShapeTools.dart';
 import 'package:sports/Tools/TextTools.dart';
-
-class CenterListModel {
-  final current;
-  final time;
-  final name;
-  final leftName;
-  final rightName;
-  final leftIcon;
-  final rightIcon;
-  final leftPoint;
-  final rightPoint;
-  final leftVS;
-  final rightVS;
-  final List<Video> videos;
-  CenterListModel(
-      this.current,
-      this.time,
-      this.name,
-      this.leftName,
-      this.rightName,
-      this.leftIcon,
-      this.rightIcon,
-      this.leftPoint,
-      this.rightPoint,
-      this.leftVS,
-      this.rightVS,
-      this.videos
-  );
-}
-
-class Video {
-  final name;
-  final image;
-  final show;
-  Video(this.name, this.image, this.show);
-}
 
 class CenterListItem extends StatelessWidget {
   final CenterListModel _model;
@@ -75,7 +40,7 @@ class CenterListItem extends StatelessWidget {
                   width: 19,
                 ),
                 SizedBox(width: 15,),
-                buildText(title: "1-1", fontSize: 19, fontColor: Color555555, fontBold: true),
+                buildText(title: _model.score, fontSize: 19, fontColor: Color555555, fontBold: true),
                 SizedBox(width: 15,),
                 Image.asset(
                   _model.rightIcon,
@@ -104,27 +69,28 @@ class CenterListItem extends StatelessWidget {
               ],
             ),
             SizedBox(height: 5,),
-            _buildVideo(_model.videos),
+            buildVideo(_model.videos),
           ],
         ),
       ),
       onTap: _selectedItem,
     );
   }
+}
 
-  Row _buildVideo(List<Video> list) {
-    List<Widget> children = [];
-    for (var value in list) {
-      children.add(SizedBox(width: 20,));
-      children.add(VideoType(value.image, value.name, value.show));
-    }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children.isEmpty ?
-      [buildText(title: "暂无更多信号", fontSize: 11, fontColor: ColorC9C9C9)] :
-      children,
-    );
+
+Row buildVideo(List<Video> list) {
+  List<Widget> children = [];
+  for (var value in list) {
+    children.add(SizedBox(width: 20,));
+    children.add(VideoType(value.image, value.name, value.show));
   }
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: children.isEmpty ?
+    [buildText(title: "暂无更多信号", fontSize: 11, fontColor: ColorC9C9C9)] :
+    children,
+  );
 }
 
 

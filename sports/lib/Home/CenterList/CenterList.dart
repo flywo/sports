@@ -46,7 +46,9 @@ class CenterList extends StatelessWidget {
     if (_type == 1) {
       return CenterListFootballItem();
     } else if (_type == 2) {
-      return CenterListBasketBallItem();
+      return CenterListBasketBallItem(
+        _list[section][row],
+      );
     }
     return CenterListItem(
         _list[section][row],

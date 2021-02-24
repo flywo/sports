@@ -30,7 +30,10 @@ class CenterListBasketBallItem extends StatelessWidget {
                   child: buildText(title: _model.currentStep, fontSize: 11, fontColor: Color999999),
                 ),
                 Spacer(),
-                buildVideo(_model.videos)
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: buildVideo(_model.videos, space: 10.0),
+                )
               ],
             ),
             Divider(
@@ -46,7 +49,7 @@ class CenterListBasketBallItem extends StatelessWidget {
                   ),
                   Expanded(child: _buildTeam()),
                   VerticalDivider(
-                    width: 5,
+                    width: 10,
                   ),
                   SizedBox(
                     width: 150,
@@ -81,7 +84,7 @@ class CenterListBasketBallItem extends StatelessWidget {
               width: 19,
             ),
           ),
-          SizedBox(width: 20, child: buildText(title: point, fontSize: 13, fontColor: Color555555, fontBold: true, textAlign: TextAlign.center),),
+          SizedBox(width: 30, child: buildText(title: point, fontSize: 13, fontColor: Color555555, fontBold: true, textAlign: TextAlign.center, overflow: TextOverflow.visible),),
         ],
       );
     }
@@ -95,13 +98,12 @@ class CenterListBasketBallItem extends StatelessWidget {
 
   Widget _buildText(text1, text2, text3, text4, text5) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        buildText(title: text1, fontSize: 12, fontColor: Color333333),
-        buildText(title: text2, fontSize: 12, fontColor: Color333333),
-        buildText(title: text3, fontSize: 12, fontColor: Color333333),
-        buildText(title: text4, fontSize: 12, fontColor: Color333333),
-        buildText(title: text5, fontSize: 12, fontColor: Color333333),
+        Expanded(child: buildText(title: text1, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: text2, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: text3, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: text4, fontSize: 12, fontColor: Color333333)),
+        Expanded(child: buildText(title: text5, fontSize: 12, fontColor: Color333333)),
       ],
     );
   }

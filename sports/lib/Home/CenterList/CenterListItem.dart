@@ -79,10 +79,10 @@ class CenterListItem extends StatelessWidget {
 }
 
 
-Row buildVideo(List<Video> list) {
+Row buildVideo(List<Video> list, {space = 20.0}) {
   List<Widget> children = [];
   for (var value in list) {
-    children.add(SizedBox(width: 20,));
+    children.add(SizedBox(width: space,));
     children.add(VideoType(value.image, value.name, value.show));
   }
   return Row(

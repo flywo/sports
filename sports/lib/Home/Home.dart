@@ -180,7 +180,7 @@ List _buildModel() {
           rightName: "切尔西",
           leftIcon: "images/欧洲1@2x.png",
           rightIcon: "images/欧洲2@2x.png",
-          leftPoint: "0.99",
+          leftPoint: "999",
           rightPoint: "1.4",
           leftVS: "1-1",
           rightVS: "1-3",
